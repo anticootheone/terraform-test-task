@@ -2,7 +2,7 @@
 
 # Author: Ilya Moiseev <ilya@moiseev.su>
 # Purpose: Test task for DevOps engineer position
-# License: MIT
+# License: MIT License
 # Date: July, 24 2020
 #
 
@@ -129,7 +129,7 @@ function check_tf() {
 function cr_db_pwds() {
     mylogger "Generating temporary passwords for database for this run"
     
-    # using data with nanoseconds, just in case
+    # using date with nanoseconds, just in case
     export TF_VAR_db_pwd=$(date --rfc-3339=ns | sha512sum | awk '{print substr($1,12,12)}')
     export TF_VAR_db_manager_pwd=$(date --rfc-3339=ns | sha512sum | awk '{print substr($1,8,12)}')
     export TF_VAR_db_user_pwd=$(date --rfc-3339=ns | sha512sum | awk '{print substr($1,4,12)}')
@@ -158,7 +158,7 @@ function create_infra() {
     fi
 }
 
-# destroy infrastructure, collect 
+# destroy infrastructure, collect database passwords from currently running infra
 function destroy_infra() {
     # some simple checks if this is a correct infrastructure to destroy
     printf "Checking if we are about to destroy correct infrastructure\n"
@@ -263,7 +263,6 @@ function main() {
 if [[ ! -x $(which terraform) ]]; then
     printf "Error: terraform executable is not found, make sure it is downloaded and unzipped into the directory set in PATH variable\n" && exit 1
 fi
-
 
 # check if '.terraform' directory exits, if not -- attempt to `terraform init`
 if [[ ! -d .terraform/ ]]; then
