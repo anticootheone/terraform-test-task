@@ -3,7 +3,7 @@
 # this is for non-interactive timezone configuration
 export DEBIAN_FRONTEND=noninteractive
 
-# exporting database passwords intp the .pgpass file for psql non-interactive usage
+# exporting database passwords into the .pgpass file for psql non-interactive usage
 echo ${db_address}:${db_port}:${dbname}:${dbadmin}:${db_admin_pwd} >> ~/.pgpass
 echo ${db_address}:${db_port}:${dbname}:${dbmanager}:${db_manager_pwd} >> ~/.pgpass
 echo ${db_address}:${db_port}:${dbname}:${dbuser}:${db_user_pwd} >> ~/.pgpass
@@ -15,7 +15,7 @@ cat >> index.html <<EOF
 <br>
 EOF
 
-# apply updates
+# install updates
 apt-get update -y
 
 # set MSK timezone
