@@ -254,7 +254,7 @@ function main() {
     mylogger "Waiting 45 seconds till infrastructure comes up"
     sleep 45
     mylogger "Attempting to connect to the created server"
-    curl $(terraform output node_public_ipv4 | awk -F'"' '{if($0 ~ /\"/) print $2}')
+    curl $(terraform output node_public_ipv4 | awk -F'"' '{if($0 ~ /"/) print $2}')
 
     mylogger "Job is done."
 }
